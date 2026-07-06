@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="https://picsum.photos/id/1005/600/400" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
   <h1>Dillon Bowen</h1>
   <p><strong>Marketing Strategist, Producer, Founder</strong></p>
   <p><em>Sharp thinking. Human execution.</em></p>
@@ -76,5 +77,6 @@ Open to real conversations about marketing systems, AI, and building things that
 ---
 
 <div align="center">
+  <img src="https://picsum.photos/id/1005/600/400" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
   <p><em>Minneapolis, MN</em></p>
 </div>
