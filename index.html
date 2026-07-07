@@ -5,138 +5,480 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dillon Bowen — Sharp thinking, human execution.</title>
 <meta name="description" content="Marketing strategist, former film grip and concrete man. Founder of Dillys Trading CO, Minneapolis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,600;0,900;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0e0e0e;--paper:#f7f5f1;--rule:#1a1a1a;--mute:#6b6b6b;--accent:#b0351f}
+  :root{
+    --noir:#1a1a1a;
+    --noir-raised:#232323;
+    --cream:#f1efe8;
+    --grey:#5f5e5a;
+    --gold:#c9a46e;
+    --cream-dim:rgba(241,239,232,.72);
+    --ease-out:cubic-bezier(.22,1,.36,1);
+    --pad-section:clamp(96px,14vh,180px);
+  }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--paper);color:var(--ink);font-family:'Helvetica Neue',Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
-  a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink)}
-  a:hover{color:var(--accent);border-color:var(--accent)}
-  .wrap{max-width:880px;margin:0 auto;padding:0 28px}
-  nav{border-bottom:1px solid var(--rule);padding:22px 0;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
-  nav .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  nav a{border:0}
-  nav strong{font-weight:800}
-  .hero{padding:140px 0 120px;border-bottom:1px solid var(--rule)}
-  .hero h1{font-size:clamp(42px,8vw,96px);font-weight:900;letter-spacing:-.02em;line-height:.95}
-  .hero p{margin-top:24px;font-size:20px;max-width:640px;color:var(--mute)}
-  section{padding:90px 0;border-bottom:1px solid var(--rule)}
-  section h2{font-size:14px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:32px;color:var(--accent)}
-  section h3{font-size:28px;font-weight:800;letter-spacing:-.01em;margin-bottom:16px}
-  section p{font-size:17px;margin-bottom:16px;max-width:680px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px;margin-top:28px}
-  .card{border:1px solid var(--rule);padding:22px;background:#fff}
-  .card h4{font-size:18px;margin-bottom:6px;font-weight:800}
-  .card .meta{font-size:13px;color:var(--mute);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em}
-  .card p{font-size:15px;margin:0}
-  .photo{background:#e8e4dc;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;overflow:hidden}
-  .photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .about-flex{display:flex;gap:36px;flex-wrap:wrap;align-items:flex-start}
-  .about-flex .photocol{flex:0 0 220px}
-  .about-flex .photocol img{width:100%;border:1px solid var(--rule);display:block}
-  .about-flex .textcol{flex:1 1 400px}
-  .brandmark{max-width:280px;margin-top:18px}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:24px}
-  .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--rule);display:block}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--noir);color:var(--cream);
+    font-family:'Libre Franklin','Helvetica Neue',Arial,sans-serif;
+    font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--noir)}
+  img{max-width:100%;height:auto;display:block}
+  a{color:inherit;text-decoration:none;border-bottom:1px solid var(--gold);transition:color .2s var(--ease-out),border-color .2s var(--ease-out)}
+  a:hover{color:var(--gold)}
+  h1,h2,h3{text-wrap:balance}
+  p{text-wrap:pretty}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(22px,5vw,48px)}
+
+  /* ---------- scroll progress ---------- */
+  .progress{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--gold);z-index:60}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    padding:20px 0;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    transition:background-color .35s var(--ease-out),box-shadow .35s var(--ease-out),padding .35s var(--ease-out);
+  }
+  nav.scrolled{background:rgba(26,26,26,.92);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 1px 0 rgba(201,164,110,.35)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;max-width:1240px}
+  nav a{border:0;position:relative;padding-bottom:3px}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform .3s var(--ease-out)}
+  nav a:hover{color:var(--gold)}
+  nav a:hover::after{transform:scaleX(1)}
+  nav strong{font-weight:900;letter-spacing:.14em}
+  nav .links{display:flex;gap:clamp(10px,2.2vw,26px);flex-wrap:wrap}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:100svh;display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero-ghost{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;user-select:none;
+    font-weight:900;font-size:clamp(120px,26vw,420px);letter-spacing:-.03em;line-height:1;
+    color:transparent;-webkit-text-stroke:1px rgba(201,164,110,.14);
+    white-space:nowrap;
+  }
+  .hero-glow{
+    position:absolute;pointer-events:none;
+    width:70vmax;height:70vmax;right:-25vmax;top:-25vmax;border-radius:50%;
+    background:radial-gradient(circle,rgba(201,164,110,.13) 0%,rgba(201,164,110,0) 62%);
+  }
+  .hero .wrap{position:relative;padding-top:120px;padding-bottom:80px}
+  .hero-rule{width:72px;height:2px;background:var(--gold);margin-bottom:36px;transform-origin:0 50%}
+  .hero h1{
+    font-size:clamp(46px,8.4vw,92px);font-weight:900;letter-spacing:-.03em;line-height:.97;
+  }
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line>span{display:inline-block}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero .lede{margin-top:32px;font-size:clamp(17px,2vw,21px);max-width:600px;color:var(--cream-dim);line-height:1.65}
+  .hero .lede strong{color:var(--cream);font-weight:600}
+  .scrollcue{
+    position:absolute;left:50%;bottom:30px;transform:translateX(-50%);
+    width:1px;height:56px;background:rgba(241,239,232,.22);overflow:hidden;
+  }
+  .scrollcue::after{content:"";position:absolute;left:0;top:-40%;width:100%;height:40%;background:var(--gold);animation:cue 2.2s var(--ease-out) infinite}
+  @keyframes cue{0%{top:-40%}70%,100%{top:110%}}
+
+  /* hero entrance */
+  @keyframes riseIn{from{transform:translateY(110%)}to{transform:translateY(0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes drawRule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .js .hero-rule{animation:drawRule .9s var(--ease-out) .15s backwards}
+  .js .hero h1 .line>span{animation:riseIn 1s var(--ease-out) backwards}
+  .js .hero h1 .line:nth-child(1)>span{animation-delay:.25s}
+  .js .hero h1 .line:nth-child(2)>span{animation-delay:.38s}
+  .js .hero .lede{animation:fadeUp .9s var(--ease-out) .75s backwards}
+  .js .scrollcue{animation:fadeUp .9s var(--ease-out) 1.3s backwards}
+
+  /* ---------- sections ---------- */
+  section{padding:var(--pad-section) 0;position:relative}
+  .band-cream{background:var(--cream);color:var(--noir)}
+  .band-cream .meta,.band-cream .caption{color:var(--grey)}
+  .band-cream a{border-bottom-color:var(--noir)}
+  .band-cream a:hover{color:var(--grey)}
+  .band-noir{background:var(--noir);color:var(--cream)}
+  h2{
+    font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-.025em;line-height:1.02;
+    margin-bottom:clamp(36px,6vh,64px);
+  }
+  h2 .tick{display:inline-block;width:.55em;height:2px;background:var(--gold);vertical-align:.28em;margin-right:.35em}
+  h3{font-size:clamp(21px,2.6vw,27px);font-weight:600;letter-spacing:-.01em;margin-bottom:14px}
+  section p{margin-bottom:16px;max-width:68ch}
+  .meta{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-dim)}
+  .caption{font-size:13.5px;color:var(--cream-dim);margin-top:10px}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,6vw,88px);align-items:start}
+  .about-photos{position:relative;min-height:520px}
+  .about-photos figure{position:absolute;margin:0;box-shadow:0 24px 60px -24px rgba(26,26,26,.45)}
+  .about-photos img{width:100%;height:auto}
+  .ph-suit{width:72%;left:0;top:0;z-index:2}
+  .ph-casual{width:58%;right:0;top:44%;z-index:1;outline:10px solid var(--cream)}
+  .about-text p:first-of-type{font-size:clamp(18px,2vw,21px);line-height:1.55}
+  .principle{
+    margin-top:34px;padding-top:26px;border-top:2px solid var(--noir);
+    font-size:clamp(19px,2.2vw,24px);font-weight:600;letter-spacing:-.01em;max-width:26ch;line-height:1.35;
+  }
+  .principle b{font-weight:900;box-shadow:inset 0 -0.28em 0 0 rgba(201,164,110,.55)}
+
+  /* ---------- film ---------- */
+  .feature{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px)}
+  .feature aside{border-top:1px solid rgba(201,164,110,.4);padding-top:22px;font-size:15px;color:var(--cream-dim)}
+  .feature aside dt{font-weight:600;color:var(--cream);margin-top:16px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .feature aside dd{margin:2px 0 0}
+  .credits{list-style:none;margin-top:clamp(48px,8vh,80px);border-top:1px solid rgba(241,239,232,.16)}
+  .credits li{
+    display:grid;grid-template-columns:86px minmax(0,1fr) auto;gap:18px;align-items:baseline;
+    padding:22px 6px;border-bottom:1px solid rgba(241,239,232,.16);
+    transition:background-color .25s var(--ease-out),padding-left .25s var(--ease-out);
+  }
+  .credits li:hover{background:var(--noir-raised);padding-left:16px}
+  .credits .year{color:var(--gold);font-weight:600;font-size:15px}
+  .credits .title{font-weight:600;font-size:clamp(17px,2vw,20px)}
+  .credits .title small{display:block;font-weight:400;font-size:14px;color:var(--cream-dim);margin-top:2px}
+  .credits .role{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-dim);text-align:right}
+
+  /* ---------- trades pull ---------- */
+  .pull{
+    font-size:clamp(24px,3.6vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.15;
+    max-width:24ch;margin-bottom:28px;
+  }
+  .pull em{font-style:normal;box-shadow:inset 0 -0.28em 0 0 rgba(201,164,110,.55)}
+
+  /* ---------- press ---------- */
+  .press-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(24px,3.5vw,40px)}
+  .clip{border-top:2px solid var(--gold);padding-top:18px}
+  .clip .shot{overflow:hidden;margin-bottom:16px;background:var(--noir-raised)}
+  .clip .shot img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.82);transform:scale(1.001);transition:transform .8s var(--ease-out),filter .8s var(--ease-out)}
+  .clip:hover .shot img{transform:scale(1.045);filter:saturate(1)}
+  .clip h3{font-size:19px;margin-bottom:4px}
+  .clip .meta{margin-bottom:10px}
+  .clip p{font-size:15px;color:var(--cream-dim);margin:0}
+  .clip .headline{font-size:clamp(22px,2.4vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.12;padding:34px 0 22px;color:var(--cream);max-width:14ch}
+  .clip .headline span{border-bottom:3px solid var(--gold)}
+
+  /* ---------- community ---------- */
+  .drift{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,3vw,32px);margin-top:clamp(42px,7vh,72px);align-items:start}
+  .drift .col{display:flex;flex-direction:column;gap:clamp(18px,3vw,32px)}
+  .drift .col:nth-child(2){margin-top:clamp(48px,9vh,110px)}
+  .drift figure{margin:0;overflow:hidden;box-shadow:0 20px 50px -22px rgba(26,26,26,.4)}
+  .drift img{width:100%;height:auto;transition:transform .8s var(--ease-out)}
+  .drift figure:hover img{transform:scale(1.04)}
+  .drift figcaption{font-size:13px;color:var(--grey);padding:10px 2px 0}
+  .receipt{
+    display:flex;gap:14px;align-items:baseline;margin-top:34px;
+    font-weight:900;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;
+  }
+  .receipt small{font-size:14px;font-weight:400;color:var(--grey);letter-spacing:.06em;text-transform:uppercase}
+
+  /* ---------- hospitality ---------- */
+  .hosp{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .hosp figure{margin:0;overflow:hidden}
+  .hosp img{filter:saturate(.85)}
   .timeline{list-style:none}
-  .timeline li{padding:14px 0;border-top:1px solid #ddd;display:flex;justify-content:space-between;gap:20px;font-size:16px}
-  .timeline li:first-child{border-top:0}
-  .timeline span{color:var(--mute);white-space:nowrap}
-  footer{padding:60px 0 80px;font-size:14px;color:var(--mute)}
+  .timeline li{padding:18px 0;border-top:1px solid rgba(241,239,232,.16);display:flex;justify-content:space-between;gap:20px;align-items:baseline}
+  .timeline li:last-child{border-bottom:1px solid rgba(241,239,232,.16)}
+  .timeline .role{font-weight:600}
+  .timeline .role small{display:block;font-weight:400;font-size:14px;color:var(--cream-dim)}
+  .timeline span.years{color:var(--gold);white-space:nowrap;font-size:14px;font-weight:600}
+
+  /* ---------- dillys ---------- */
+  .dillys-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .brandmark{max-width:320px;border:1px solid rgba(26,26,26,.15)}
+  .btn{
+    display:inline-block;margin-top:10px;border:0;background:var(--noir);color:var(--cream);
+    padding:16px 30px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    transition:background-color .25s var(--ease-out),color .25s var(--ease-out),transform .25s var(--ease-out);
+  }
+  .btn:hover{background:var(--gold);color:var(--noir);transform:translateY(-2px)}
+
+  /* ---------- contact ---------- */
+  .contact{text-align:left}
+  .contact h2{margin-bottom:18px}
+  .contact .email{
+    display:inline-block;margin-top:26px;border:0;
+    font-size:clamp(24px,4.4vw,52px);font-weight:900;letter-spacing:-.025em;color:var(--cream);
+    border-bottom:3px solid var(--gold);padding-bottom:6px;
+  }
+  .contact .email:hover{color:var(--gold)}
+  .contact .also{margin-top:26px;color:var(--cream-dim);font-size:15px}
+
+  footer{padding:44px 0 60px;font-size:13.5px;color:var(--cream-dim);border-top:1px solid rgba(241,239,232,.14)}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  footer b{color:var(--gold);font-weight:600}
+
+  /* ---------- reveal on scroll (JS-gated: visible by default) ---------- */
+  .js .reveal{opacity:0;transform:translateY(26px);filter:blur(3px);
+    transition:opacity .8s var(--ease-out),transform .8s var(--ease-out),filter .8s var(--ease-out);
+    transition-delay:calc(var(--d,0)*90ms);
+  }
+  .js .reveal.in{opacity:1;transform:none;filter:none}
+
+  /* ---------- parallax ---------- */
+  [data-parallax]{will-change:transform}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .about-grid,.feature,.hosp,.dillys-grid{grid-template-columns:1fr}
+    .about-photos{min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .about-photos figure{position:static;width:auto}
+    .ph-casual{outline:0}
+    .hosp figure{order:-1}
+    .credits li{grid-template-columns:64px minmax(0,1fr)}
+    .credits .role{grid-column:2;text-align:left}
+  }
+  @media (max-width:560px){
+    .drift{grid-template-columns:1fr}
+    .drift .col:nth-child(2){margin-top:0}
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;transition-delay:0ms !important}
+    .js .reveal{opacity:1;transform:none;filter:none}
+    [data-parallax]{transform:none !important}
+    .scrollcue{display:none}
+  }
 </style>
 </head>
 <body>
 
-<nav><div class="wrap"><strong>DILLON BOWEN</strong>
-  <span><a href="#about">About</a> · <a href="#film">Film</a> · <a href="#trades">Trades</a> · <a href="#press">Press</a> · <a href="#community">Community</a> · <a href="#dillys">Dillys</a> · <a href="#contact">Contact</a></span>
-</div></nav>
+<div class="progress" aria-hidden="true"></div>
 
-<header class="hero"><div class="wrap">
-  <h1>Sharp thinking,<br>human execution.</h1>
-  <p>Marketing strategist. Former film grip, concrete man, bartender. Founder of Dillys Trading CO. Minneapolis.</p>
-</div></header>
-
-<section id="about"><div class="wrap">
-  <h2>About</h2>
-  <div class="about-flex">
-  <div class="photocol"><img src="images/about/headshot-suit.webp" alt="Dillon Bowen headshot"></div>
-  <div class="textcol">
-  <h3>I build things. That's the through-line.</h3>
-  <p>Today it's Dillys Trading CO, the AI-enhanced marketing consultancy I founded in 2020, and a Junior Analyst seat in Internet Service Testing. Before that, it was concrete forms on cliff-edge bedrock homes in Moab, Utah. Before that, it was a dolly track leveled on apple boxes in the sand dunes, waiting for Johnny Depp to walk past with a pink umbrella.</p>
-  <p>In 2013 I worked as a local-hire grip on <em>The Lone Ranger</em> (Disney / Jerry Bruckheimer), under key grip J. Michael Popovich's department on the Moab unit. I set track for the Depp-and-Hammer horse scene, held bounce boards in sync with the dolly, and rode the Colorado River sandbag run — roughly a thousand sandbags moved by jet boat to build a fake dune for the exploding train tracks sequence.</p>
-  <p>Two years earlier, I co-produced <em>Sorrow</em> (2015, dir. Millie Loredo). I scouted locations, ran logistics, and funded production myself through a merchandise campaign I designed and sold. In between, I spent two years at Straight Line Contracting pouring foundations. When a second-story Best Western patio needed outside forms set in a storm on deadline, with minimal railing, I volunteered solo. Nobody else on the crew would touch it.</p>
-  <p>Same principle every time: show up, do the work nobody else wants, get the details right.</p>
-  </div></div>
-</div></section>
-
-<section id="film"><div class="wrap">
-  <h2>Film & Production</h2>
-  <div class="grid">
-    <div class="card"><div class="photo">Disney truck decal</div><h4>The Lone Ranger</h4><div class="meta">Grip · 2013 · Disney / Bruckheimer</div><p>Moab unit. Dolly track on apple boxes for the pink umbrella scene. Colorado River sandbag run — 1,000 sandbags by jet boat.</p></div>
-    <div class="card"><div class="photo">Sorrow poster</div><h4>Sorrow</h4><div class="meta">Co-Producer · 2015 · dir. Millie Loredo</div><p>Locations, logistics, and a self-funded merchandise campaign that paid for the shoot. IMDb tt2140423.</p></div>
-    <div class="card"><div class="photo">Ravenous poster</div><h4>Ravenous: You're the Main Course</h4><div class="meta">Featured Performer</div><p>Zombie. Hospital chase sequences in an independent horror feature.</p></div>
+<nav id="nav" aria-label="Site">
+  <div class="wrap">
+    <strong>DILLON BOWEN</strong>
+    <span class="links">
+      <a href="#about">About</a>
+      <a href="#film">Film</a>
+      <a href="#trades">Trades</a>
+      <a href="#press">Press</a>
+      <a href="#community">Community</a>
+      <a href="#dillys">Dillys</a>
+      <a href="#contact">Contact</a>
+    </span>
   </div>
-</div></section>
+</nav>
 
-<section id="trades"><div class="wrap">
-  <h2>Construction & Trades</h2>
-  <h3>Straight Line Contracting · Moab, UT · ~2010–2012</h3>
-  <p>Form setter on million-dollar homes, municipal jobs, cliff-edge bedrock foundations, retaining walls, curb and gutter, and stained concrete. Volunteered solo to set outside forms on a second-story Best Western patio during a deadline storm — the job no one else on the crew would take.</p>
-</div></section>
-
-<section id="press"><div class="wrap">
-  <h2>Press</h2>
-  <div class="grid">
-    <div class="card"><div class="photo">"Celebrating Sorrow"</div><h4>Moab Times-Independent</h4><div class="meta">Oct 10, 2011</div><p>Coverage of the <em>Sorrow</em> Moab shoot.</p></div>
-    <div class="card"><div class="photo">Daytime @ Nine screenshot</div><h4>Fox San Antonio · Daytime @ Nine</h4><div class="meta">Apr 22, 2013</div><p>On-set interview with director Millie Loredo promoting <em>Sorrow</em>.</p></div>
-    <div class="card"><div class="photo"><img src="images/community/toga-flyer.webp" alt="Toga Party fundraiser flyer"></div><h4>Moab Times-Independent</h4><div class="meta">Aug 2015</div><p>"Club Rio to host toga party Aug. 29." Cancer fundraiser coverage.</p></div>
+<header class="hero">
+  <div class="hero-ghost" data-parallax="-0.12" aria-hidden="true">BOWEN</div>
+  <div class="hero-glow" data-parallax="0.1" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-rule"></div>
+    <h1>
+      <span class="line"><span>Sharp thinking,</span></span>
+      <span class="line"><span><em>human</em> execution.</span></span>
+    </h1>
+    <p class="lede">Marketing strategist. Former film grip, concrete man, bartender. Founder of <strong>Dillys Trading CO</strong>. Minneapolis.</p>
   </div>
-</div></section>
+  <div class="scrollcue" aria-hidden="true"></div>
+</header>
 
-<section id="community"><div class="wrap">
-  <h2>Community</h2>
-  <h3>Moab Toga Party Cancer Fundraiser · Aug 29, 2015</h3>
-  <p>Pitched and co-organized (with Crystal Alvarez) a benefit at Club Rio for Jessica Johnson and Ruth Velasquez, two local mothers battling cancer. Went door-to-door on Main Street Moab by bicycle soliciting donations, secured thousands in silent auction items from Eddie McStiff's, Moab Brewery, Pagan Mountaineering, Tech Zen, Gravel Pit Lanes, and more, negotiated donated venue and decor, filled the bar to capacity, and raised over $2,000 in a single night. 100% of attendees in DIY togas.</p>
-  <div class="gallery">
-    <img src="images/community/toga-flyer.webp" alt="Moab Toga Party fundraiser flyer, Club Rio, Aug 29 2015">
-    <img src="images/community/toga-group.webp" alt="Group in togas at the Moab Toga Party fundraiser">
-    <img src="images/community/toga-dj.webp" alt="DJ spinning at the toga party, Roman column decor">
-    <img src="images/community/toga-prep-columns.webp" alt="Hand-built cardboard Roman columns for the toga party">
+<section id="about" class="band-cream">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>I build things. That's the through-line.</h2>
+    <div class="about-grid">
+      <div class="about-photos">
+        <figure class="ph-suit reveal" data-parallax="-0.06"><img src="images/about/headshot-suit.webp" alt="Dillon Bowen, studio headshot in a grey suit" width="462" height="557"></figure>
+        <figure class="ph-casual reveal" data-parallax="0.08" style="--d:2"><img src="images/about/headshot-casual.webp" alt="Dillon Bowen, casual portrait" width="460" height="557"></figure>
+      </div>
+      <div class="about-text">
+        <p class="reveal">Today it's Dillys Trading CO, the AI-enhanced marketing consultancy I founded in 2020, and a Junior Analyst seat in Internet Service Testing. Before that, it was concrete forms on cliff-edge bedrock homes in Moab, Utah. Before that, it was a dolly track leveled on apple boxes in the sand dunes, waiting for Johnny Depp to walk past with a pink umbrella.</p>
+        <p class="reveal" style="--d:1">In 2013 I worked as a local-hire grip on <em>The Lone Ranger</em> (Disney / Jerry Bruckheimer), under key grip J. Michael Popovich's department on the Moab unit. I set track for the Depp-and-Hammer horse scene, held bounce boards in sync with the dolly, and rode the Colorado River sandbag run: roughly a thousand sandbags moved by jet boat to build a fake dune for the exploding train tracks sequence.</p>
+        <p class="reveal" style="--d:2">Two years earlier, I co-produced <em>Sorrow</em> (2015, dir. Millie Loredo). I scouted locations, ran logistics, and funded production myself through a merchandise campaign I designed and sold. In between, I spent two years at Straight Line Contracting pouring foundations.</p>
+        <p class="principle reveal" style="--d:3">Show up. Do the work nobody else wants. <b>Get the details right.</b></p>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section id="hospitality"><div class="wrap">
-  <h2>Hospitality</h2>
-  <div class="about-flex">
-  <div class="photocol"><img src="images/hospitality/moab-brewery-booth.jpg" alt="Moab Brewery pour-over booth"></div>
-  <div class="textcol">
-  <ul class="timeline">
-    <li>Wild Boar Bar & Grill — Manager / Server, Hopkins MN <span>2020–2022</span></li>
-    <li>Ray Jay's American Grill — Bar Support, Minneapolis MN <span>2019–2021</span></li>
-    <li>Moab Brewery & Distillery — Bartender / Trainer, Moab UT <span>2016–2019</span></li>
-    <li>Earlier F&B roles — Moab & Minneapolis <span>2002–2015</span></li>
-  </ul>
-  </div></div>
-</div></section>
+<section id="film" class="band-noir">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Film &amp; production</h2>
+    <div class="feature">
+      <div>
+        <h3 class="reveal">The Lone Ranger, Moab unit</h3>
+        <p class="reveal" style="--d:1">Grip work is invisible when it's done right: the camera floats, the light holds, nobody thinks about why. I leveled dolly track on apple boxes in open sand for the pink umbrella scene, and matched bounce boards to a moving dolly so the close-ups stayed lit.</p>
+        <p class="reveal" style="--d:2">Then the river: a thousand sandbags run by jet boat down the Colorado to build a fake dune for the exploding train tracks sequence. You hand them off one at a time. There is no trick to it.</p>
+      </div>
+      <aside class="reveal" style="--d:2">
+        <dl>
+          <dt>Production</dt><dd>Disney / Jerry Bruckheimer Films, 2013</dd>
+          <dt>Department</dt><dd>Grip, under key grip J. Michael Popovich</dd>
+          <dt>Location</dt><dd>Moab, Utah. Sand dunes and the Colorado River.</dd>
+        </dl>
+      </aside>
+    </div>
+    <ul class="credits reveal" style="--d:1">
+      <li><span class="year">2013</span><span class="title">The Lone Ranger<small>Disney / Bruckheimer. Moab unit.</small></span><span class="role">Grip</span></li>
+      <li><span class="year">2015</span><span class="title">Sorrow<small>dir. Millie Loredo. Locations, logistics, self-funded merch campaign that paid for the shoot. IMDb tt2140423.</small></span><span class="role">Co-producer</span></li>
+      <li><span class="year">&nbsp;</span><span class="title">Ravenous: You're the Main Course<small>Independent horror. Zombie, hospital chase sequences.</small></span><span class="role">Featured performer</span></li>
+    </ul>
+  </div>
+</section>
 
-<section id="dillys"><div class="wrap">
-  <h2>Dillys Trading CO</h2>
-  <h3>AI-enhanced marketing consultancy.</h3>
-  <p>Prompt systems, content engines, and campaign frameworks that pair LLM tooling with human strategy. Small business and digital product clients. Minneapolis, remote.</p>
-  <img class="brandmark" src="images/brand/dillys-logo.jpg" alt="Dillys Trading CO logo">
-  <p><a href="https://dillystrading.co">dillystrading.co →</a></p>
-</div></section>
+<section id="trades" class="band-cream">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Concrete &amp; trades</h2>
+    <p class="pull reveal">The second-story patio in a storm, on deadline, with minimal railing. <em>Nobody else would touch it.</em> I set the forms solo.</p>
+    <p class="reveal" style="--d:1">Straight Line Contracting, Moab, Utah, roughly 2010 to 2012. Form setter on million-dollar homes, municipal jobs, cliff-edge bedrock foundations, retaining walls, curb and gutter, and stained concrete. The Best Western patio above is the job I still measure others against.</p>
+  </div>
+</section>
 
-<section id="contact"><div class="wrap">
-  <h2>Contact</h2>
-  <h3>Straight answers, fast. Use email.</h3>
-  <p><a href="mailto:hello@dillystrading.co">hello@dillystrading.co</a> · <a href="https://linkedin.com">LinkedIn</a></p>
-</div></section>
+<section id="press" class="band-noir">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Press</h2>
+    <div class="press-grid">
+      <article class="clip reveal">
+        <div class="shot"><p class="headline">&ldquo;Celebrating <span>Sorrow</span>&rdquo;</p></div>
+        <h3>Moab Times-Independent</h3>
+        <div class="meta">Oct 10, 2011</div>
+        <p>Coverage of the <em>Sorrow</em> shoot on location in Moab.</p>
+      </article>
+      <article class="clip reveal" style="--d:1">
+        <div class="shot"><img src="images/community/sanantonio-fox-news-v2.webp" alt="Dillon Bowen interviewed on the Daytime @ Nine set, Fox San Antonio" width="960" height="960"></div>
+        <h3>Fox San Antonio &middot; Daytime @ Nine</h3>
+        <div class="meta">Apr 22, 2013</div>
+        <p>On-set interview alongside director Millie Loredo promoting <em>Sorrow</em>.</p>
+      </article>
+      <article class="clip reveal" style="--d:2">
+        <div class="shot"><img src="images/community/toga-flyer.webp" alt="Club Rio toga party fundraiser flyer, August 29, 2015" width="539" height="960" style="object-position:top"></div>
+        <h3>Moab Times-Independent</h3>
+        <div class="meta">Aug 2015</div>
+        <p>&ldquo;Club Rio to host toga party Aug. 29.&rdquo; Cancer fundraiser coverage.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-<footer><div class="wrap">
-  <span>© Dillon Bowen</span>
-  <span>Sharp thinking, human execution.</span>
-</div></footer>
+<section id="community" class="band-cream">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>The toga party that filled a bar</h2>
+    <p class="reveal">August 29, 2015. Pitched and co-organized, with Crystal Alvarez, a benefit at Club Rio for Jessica Johnson and Ruth Velasquez, two Moab mothers battling cancer. I went door-to-door down Main Street by bicycle soliciting donations, secured thousands in silent auction items from Eddie McStiff's, Moab Brewery, Pagan Mountaineering, Tech Zen, Gravel Pit Lanes, and more, negotiated donated venue and decor, and built the Roman columns by hand out of cardboard.</p>
+    <div class="receipt reveal" style="--d:1">$2,000+ <small>raised in one night &middot; bar at capacity &middot; 100% DIY togas</small></div>
+    <div class="drift">
+      <div class="col" data-parallax="-0.05">
+        <figure class="reveal"><img src="images/community/toga-group.webp" alt="Group in hand-made togas at the Club Rio fundraiser" width="960" height="960"><figcaption>Full house, all in DIY togas.</figcaption></figure>
+        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-columns.webp" alt="Hand-built cardboard Roman columns before the event" width="960" height="960"><figcaption>Cardboard Roman columns, built by hand.</figcaption></figure>
+      </div>
+      <div class="col" data-parallax="0.06">
+        <figure class="reveal"><img src="images/community/toga-dj.webp" alt="DJ performing at the toga party beside Roman column decor" width="960" height="960"><figcaption>The DJ booth, mid-set.</figcaption></figure>
+        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-fronds.webp" alt="Palm fronds being prepared as decor for the fundraiser" width="960" height="960"><figcaption>Decor prep: palm fronds, donated.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hospitality" class="band-noir">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Hospitality</h2>
+    <div class="hosp">
+      <figure class="reveal" data-parallax="-0.04">
+        <img src="images/hospitality/moab-brewery-booth.jpg" alt="Dillon Bowen working the Moab Brewery pour-over booth at an outdoor event" width="1200" height="900">
+        <figcaption class="caption">Moab Brewery booth, working the taps.</figcaption>
+      </figure>
+      <ul class="timeline reveal" style="--d:1">
+        <li><span class="role">Wild Boar Bar &amp; Grill<small>Manager / Server, Hopkins MN</small></span><span class="years">2020–2022</span></li>
+        <li><span class="role">Ray Jay's American Grill<small>Bar Support, Minneapolis MN</small></span><span class="years">2019–2021</span></li>
+        <li><span class="role">Moab Brewery &amp; Distillery<small>Bartender / Trainer, Moab UT</small></span><span class="years">2016–2019</span></li>
+        <li><span class="role">Earlier F&amp;B roles<small>Moab &amp; Minneapolis</small></span><span class="years">2002–2015</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="dillys" class="band-cream">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Dillys Trading CO</h2>
+    <div class="dillys-grid">
+      <div>
+        <h3 class="reveal">AI-enhanced marketing consultancy.</h3>
+        <p class="reveal" style="--d:1">Prompt systems, content engines, and campaign frameworks that pair LLM tooling with human strategy. Small business and digital product clients. Minneapolis, remote.</p>
+        <a class="btn reveal" style="--d:2" href="https://dillystrading.co">Visit dillystrading.co</a>
+      </div>
+      <img class="brandmark reveal" style="--d:1" data-parallax="0.05" src="images/brand/dillys-logo.jpg" alt="Dillys Trading CO logo" width="1050" height="600">
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="band-noir contact">
+  <div class="wrap">
+    <h2 class="reveal"><span class="tick"></span>Straight answers, fast.</h2>
+    <p class="reveal" style="--d:1">Email is the reliable channel. I read everything.</p>
+    <a class="email reveal" style="--d:2" href="mailto:hello@dillystrading.co">hello@dillystrading.co</a>
+    <p class="also reveal" style="--d:3"><a href="https://linkedin.com/in/dillonbowen">Find Dillon Bowen on LinkedIn</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© Dillon Bowen, Minneapolis</span>
+    <span>Sharp thinking, <b>human</b> execution.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var docEl = document.documentElement;
+  docEl.classList.add('js');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- scroll reveals ---- */
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.05});
+    reveals.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---- nav state + progress + parallax, one rAF loop ---- */
+  var nav = document.getElementById('nav');
+  var bar = document.querySelector('.progress');
+  var pEls = [].slice.call(document.querySelectorAll('[data-parallax]')).map(function(el){
+    return {el:el, speed:parseFloat(el.getAttribute('data-parallax')) || 0, cur:0};
+  });
+  var ticking = false;
+
+  function update(){
+    ticking = false;
+    var y = window.scrollY || window.pageYOffset;
+    nav.classList.toggle('scrolled', y > 40);
+    var max = docEl.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (reduced) return;
+    var vh = window.innerHeight;
+    for (var i = 0; i < pEls.length; i++) {
+      var p = pEls[i];
+      var r = p.el.getBoundingClientRect();
+      if (r.bottom < -300 || r.top > vh + 300) continue;
+      /* subtract the applied translate so we measure the untransformed position */
+      var center = (r.top - p.cur) + r.height / 2 - vh / 2;
+      p.cur = center * p.speed;
+      p.el.style.transform = 'translate3d(0,' + p.cur.toFixed(1) + 'px,0)';
+    }
+  }
+  function onScroll(){
+    if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
+})();
+</script>
 
 </body>
 </html>
