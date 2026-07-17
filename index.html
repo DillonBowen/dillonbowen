@@ -5,9 +5,34 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dillon Bowen — Sharp thinking, human execution.</title>
 <meta name="description" content="Marketing strategist, former film grip and concrete man. Founder of Dillys Trading CO, Minneapolis.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Dillon Bowen — Sharp thinking, human execution.">
+<meta property="og:description" content="Marketing strategist, former film grip and concrete man. Founder of Dillys Trading CO, Minneapolis.">
+<meta property="og:url" content="https://dillonbowen.netlify.app/">
+<meta property="og:image" content="https://dillonbowen.netlify.app/images/og/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dillon Bowen — Sharp thinking, human execution.">
+<meta name="twitter:description" content="Marketing strategist, former film grip and concrete man. Founder of Dillys Trading CO, Minneapolis.">
+<meta name="twitter:image" content="https://dillonbowen.netlify.app/images/og/og-default.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dillon Bowen",
+  "url": "https://dillonbowen.netlify.app/",
+  "jobTitle": "Marketing Strategist",
+  "worksFor": { "@type": "Organization", "name": "Dillys Trading CO", "url": "https://dillystrading.co" },
+  "email": "mailto:hello@dillystrading.co",
+  "sameAs": ["https://linkedin.com/in/dillonbowen"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Minneapolis", "addressRegion": "MN" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,600;0,900;1,400&display=swap" rel="stylesheet">
+<script defer data-domain="dillonbowen.netlify.app" src="https://plausible.io/js/script.tagged-events.outbound-links.js"></script>
 <style>
   :root{
     --noir:#1a1a1a;
@@ -211,6 +236,12 @@
   .contact .email:hover{color:var(--gold)}
   .contact .also{margin-top:26px;color:var(--cream-dim);font-size:15px}
 
+  .capture{display:flex;flex-direction:column;gap:12px;max-width:360px;margin-top:24px}
+  .capture label.meta{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream-dim)}
+  .capture input[type="email"]{background:var(--noir);border:1px solid rgba(241,239,232,.2);color:var(--cream);padding:12px 16px;border-radius:4px;font:inherit}
+  .capture input[type="email"]:focus{outline:none;border-color:var(--gold)}
+  .capture .btn{width:fit-content;align-self:flex-start}
+
   footer{padding:44px 0 60px;font-size:13.5px;color:var(--cream-dim);border-top:1px solid rgba(241,239,232,.14)}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
   footer b{color:var(--gold);font-weight:600}
@@ -288,8 +319,8 @@
     <h2 class="reveal"><span class="tick"></span>I build things. That's the through-line.</h2>
     <div class="about-grid">
       <div class="about-photos">
-        <figure class="ph-suit reveal" data-parallax="-0.06"><img src="images/about/headshot-suit.webp" alt="Dillon Bowen, studio headshot in a grey suit" width="462" height="557"></figure>
-        <figure class="ph-casual reveal" data-parallax="0.08" style="--d:2"><img src="images/about/headshot-casual.webp" alt="Dillon Bowen, casual portrait" width="460" height="557"></figure>
+        <figure class="ph-suit reveal" data-parallax="-0.06"><img src="images/about/headshot-suit.webp" alt="Dillon Bowen, studio headshot in a grey suit" width="462" height="557" fetchpriority="high"></figure>
+        <figure class="ph-casual reveal" data-parallax="0.08" style="--d:2"><img src="images/about/headshot-casual.webp" alt="Dillon Bowen, casual portrait" width="460" height="557" loading="lazy"></figure>
       </div>
       <div class="about-text">
         <p class="reveal">Today it's Dillys Trading CO, the AI-enhanced marketing consultancy I founded in 2020, and a Junior Analyst seat in Internet Service Testing. Before that, it was concrete forms on cliff-edge bedrock homes in Moab, Utah. Before that, it was a dolly track leveled on apple boxes in the sand dunes, waiting for Johnny Depp to walk past with a pink umbrella.</p>
@@ -345,13 +376,13 @@
         <p>Coverage of the <em>Sorrow</em> shoot on location in Moab.</p>
       </article>
       <article class="clip reveal" style="--d:1">
-        <div class="shot"><img src="images/community/sanantonio-fox-news-v2.webp" alt="Dillon Bowen interviewed on the Daytime @ Nine set, Fox San Antonio" width="960" height="960"></div>
+        <div class="shot"><img src="images/community/sanantonio-fox-news-v2.webp" alt="Dillon Bowen interviewed on the Daytime @ Nine set, Fox San Antonio" width="960" height="960" loading="lazy"></div>
         <h3>Fox San Antonio &middot; Daytime @ Nine</h3>
         <div class="meta">Apr 22, 2013</div>
         <p>On-set interview alongside director Millie Loredo promoting <em>Sorrow</em>.</p>
       </article>
       <article class="clip reveal" style="--d:2">
-        <div class="shot"><img src="images/community/toga-flyer.webp" alt="Club Rio toga party fundraiser flyer, August 29, 2015" width="539" height="960" style="object-position:top"></div>
+        <div class="shot"><img src="images/community/toga-flyer.webp" alt="Club Rio toga party fundraiser flyer, August 29, 2015" width="539" height="960" style="object-position:top" loading="lazy"></div>
         <h3>Moab Times-Independent</h3>
         <div class="meta">Aug 2015</div>
         <p>&ldquo;Club Rio to host toga party Aug. 29.&rdquo; Cancer fundraiser coverage.</p>
@@ -367,12 +398,12 @@
     <div class="receipt reveal" style="--d:1">$2,000+ <small>raised in one night &middot; bar at capacity &middot; 100% DIY togas</small></div>
     <div class="drift">
       <div class="col" data-parallax="-0.05">
-        <figure class="reveal"><img src="images/community/toga-group.webp" alt="Group in hand-made togas at the Club Rio fundraiser" width="960" height="960"><figcaption>Full house, all in DIY togas.</figcaption></figure>
-        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-columns.webp" alt="Hand-built cardboard Roman columns before the event" width="960" height="960"><figcaption>Cardboard Roman columns, built by hand.</figcaption></figure>
+        <figure class="reveal"><img src="images/community/toga-group.webp" alt="Group in hand-made togas at the Club Rio fundraiser" width="960" height="960" loading="lazy"><figcaption>Full house, all in DIY togas.</figcaption></figure>
+        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-columns.webp" alt="Hand-built cardboard Roman columns before the event" width="960" height="960" loading="lazy"><figcaption>Cardboard Roman columns, built by hand.</figcaption></figure>
       </div>
       <div class="col" data-parallax="0.06">
-        <figure class="reveal"><img src="images/community/toga-dj.webp" alt="DJ performing at the toga party beside Roman column decor" width="960" height="960"><figcaption>The DJ booth, mid-set.</figcaption></figure>
-        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-fronds.webp" alt="Palm fronds being prepared as decor for the fundraiser" width="960" height="960"><figcaption>Decor prep: palm fronds, donated.</figcaption></figure>
+        <figure class="reveal"><img src="images/community/toga-dj.webp" alt="DJ performing at the toga party beside Roman column decor" width="960" height="960" loading="lazy"><figcaption>The DJ booth, mid-set.</figcaption></figure>
+        <figure class="reveal" style="--d:1"><img src="images/community/toga-prep-fronds.webp" alt="Palm fronds being prepared as decor for the fundraiser" width="960" height="960" loading="lazy"><figcaption>Decor prep: palm fronds, donated.</figcaption></figure>
       </div>
     </div>
   </div>
@@ -383,7 +414,7 @@
     <h2 class="reveal"><span class="tick"></span>Hospitality</h2>
     <div class="hosp">
       <figure class="reveal" data-parallax="-0.04">
-        <img src="images/hospitality/moab-brewery-booth.jpg" alt="Dillon Bowen working the Moab Brewery pour-over booth at an outdoor event" width="1200" height="900">
+        <img src="images/hospitality/moab-brewery-booth.jpg" alt="Dillon Bowen working the Moab Brewery pour-over booth at an outdoor event" width="1200" height="900" loading="lazy">
         <figcaption class="caption">Moab Brewery booth, working the taps.</figcaption>
       </figure>
       <ul class="timeline reveal" style="--d:1">
@@ -405,7 +436,7 @@
         <p class="reveal" style="--d:1">Prompt systems, content engines, and campaign frameworks that pair LLM tooling with human strategy. Small business and digital product clients. Minneapolis, remote.</p>
         <a class="btn reveal" style="--d:2" href="https://dillystrading.co">Visit dillystrading.co</a>
       </div>
-      <img class="brandmark reveal" style="--d:1" data-parallax="0.05" src="images/brand/dillys-logo.jpg" alt="Dillys Trading CO logo" width="1050" height="600">
+      <img class="brandmark reveal" style="--d:1" data-parallax="0.05" src="images/brand/dillys-logo.jpg" alt="Dillys Trading CO logo" width="1050" height="600" loading="lazy">
     </div>
   </div>
 </section>
@@ -416,6 +447,13 @@
     <p class="reveal" style="--d:1">Email is the reliable channel. I read everything.</p>
     <a class="email reveal" style="--d:2" href="mailto:hello@dillystrading.co">hello@dillystrading.co</a>
     <p class="also reveal" style="--d:3"><a href="https://linkedin.com/in/dillonbowen">Find Dillon Bowen on LinkedIn</a></p>
+    <form class="capture reveal" style="--d:4" name="site-capture" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="site-capture">
+      <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+      <label for="capture-email" class="meta">Want the Dillys prompt drops?</label>
+      <input id="capture-email" type="email" name="email" required placeholder="you@company.com">
+      <button class="btn" type="submit">Send me the good stuff</button>
+    </form>
   </div>
 </section>
 
@@ -477,6 +515,28 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll, {passive:true});
   update();
+
+  /* ---- scroll-depth + CTA events, piggybacked on the existing rAF loop ---- */
+  if (window.plausible) {
+    var depthsFired = {};
+    var sections = [].slice.call(document.querySelectorAll('section[id]'));
+    var origUpdate = update;
+    update = function(){
+      origUpdate();
+      sections.forEach(function(s){
+        var r = s.getBoundingClientRect();
+        if (!depthsFired[s.id] && r.top < window.innerHeight * 0.5) {
+          depthsFired[s.id] = true;
+          window.plausible('Section Viewed', {props:{section: s.id}});
+        }
+      });
+    };
+    document.querySelectorAll('a.btn, a.email, [href^="mailto:"]').forEach(function(a){
+      a.addEventListener('click', function(){
+        window.plausible('CTA Click', {props:{label: a.textContent.trim()}});
+      });
+    });
+  }
 })();
 </script>
 

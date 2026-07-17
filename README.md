@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://picsum.photos/id/1005/600/400" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
+  <img src="images/about/headshot-suit.webp" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
   <h1>Dillon Bowen</h1>
   <p><strong>Marketing Strategist, Producer, Founder</strong></p>
   <p><em>Sharp thinking. Human execution.</em></p>
@@ -66,17 +66,17 @@ I combine hands-on experience with modern AI tools to create practical marketing
 
 ---
 
-### Let’s Connect
+### Let's Connect
 
 - **Website**: [dillonbowen.netlify.app](https://dillonbowen.netlify.app/)
 - **Business**: [dillystradingco.com](https://dillystradingco.com)
-- **Email**: dillon@dillystradingco.com
+- **Email**: [hello@dillystrading.co](mailto:hello@dillystrading.co)
 
 Open to real conversations about marketing systems, AI, and building things that last.
 
 ---
 
 <div align="center">
-  <img src="https://picsum.photos/id/1005/600/400" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
+  <img src="images/about/headshot-casual.webp" alt="Dillon Bowen" style="border-radius: 8px; max-width: 300px;">
   <p><em>Minneapolis, MN</em></p>
 </div>
